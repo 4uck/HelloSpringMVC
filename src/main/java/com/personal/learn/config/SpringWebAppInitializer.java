@@ -10,24 +10,24 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 
-//public class SpringWebAppInitializer implements WebApplicationInitializer {
-//
-//    @Override
-//    public void onStartup(ServletContext servletContext) throws ServletException {
-//        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-//        appContext.register(ApplicationContextConfig.class);
-//
-//        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher",
-//                new DispatcherServlet(appContext));
-//        dispatcher.setLoadOnStartup(1);
-//        dispatcher.addMapping("/");
-//
-//        // UTF8 Charactor Filter.
-//        FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
-//
-//        fr.setInitParameter("encoding", "UTF-8");
-//        fr.setInitParameter("forceEncoding", "true");
-//        fr.addMappingForUrlPatterns(null, true, "/*");
-//    }
-//
-//}
+public class SpringWebAppInitializer implements WebApplicationInitializer {
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+        appContext.register(ApplicationContextConfig.class);
+
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher",
+                new DispatcherServlet(appContext));
+        dispatcher.setLoadOnStartup(1);
+        dispatcher.addMapping("/");
+
+        // UTF8 Charactor Filter.
+        FilterRegistration.Dynamic fr = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
+
+        fr.setInitParameter("encoding", "UTF-8");
+        fr.setInitParameter("forceEncoding", "true");
+        fr.addMappingForUrlPatterns(null, true, "/*");
+    }
+
+}

@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 
-//@ComponentScan("com.personal.learn.*")
+@ComponentScan("com.personal.learn.*")
 public class ApplicationContextConfig {
 
 
