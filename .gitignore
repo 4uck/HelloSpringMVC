@@ -1,0 +1,14 @@
+###################
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+.idea
+.project
+.classpath
+target/
+*.iml
+src/main/webapp/css/bundle.css
+src/main/webapp/js/
+src/main/webapp/images/
+src/main/webapp/fonts/
+src/main/webapp/index.html
+rebel.xml
