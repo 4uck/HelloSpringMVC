@@ -1,17 +1,33 @@
 package com.personal.learn.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import com.personal.learn.models.Human;
+import com.personal.learn.services.HumanService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/humans")
 public class MainRESTController {
 
-    @RequestMapping(value = "/hello", method = RequestMethod.GET)
+    @Autowired
+    private HumanService humanService;
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public String welcome() {
-        return "Welcome to RestTemplate Example.";
+    public String save(@RequestBody Human human) {
+        humanService.savaHuman(human);
+        return human.getId().toString();
+    }
+
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public List<Human> all() {
+        return humanService.findAll();
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Human find(@PathVariable("id") String id) {
+        return humanService.findById(id);
     }
 }
