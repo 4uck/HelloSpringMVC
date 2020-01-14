@@ -3,6 +3,7 @@ body {
     margin: 20px;
 }
 
-.root-component {
-
+.root-component .title {
+    width: max-content;
+    margin: 10px auto;
 }
