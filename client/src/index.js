@@ -12,7 +12,7 @@ class RootComponent extends React.Component {
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={App}/>
-                    <Route path="/humans/:id" component={HumanView}/>
+                    <Route path="/human/:id" component={HumanView}/>
                 </Switch>
             </BrowserRouter>
         );

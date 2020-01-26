@@ -39,7 +39,7 @@ class MasterComponent extends React.Component {
     render() {
         return (
             <div className="table-component">
-                <div className="new-human-btn-wrapper"><Link to='/humans/new' className="btn btn-primary">Добавить</Link></div>
+                <div className="new-human-btn-wrapper"><Link to='/human/new' className="btn btn-primary">Добавить</Link></div>
                 <table className="table table-hover">
                     <TableHead/>
                     <TableBody humans={this.state.humans} handleClick={this.handleClick}/>
