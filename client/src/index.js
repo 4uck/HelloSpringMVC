@@ -1,23 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import HumansTable from './components/humansTable/MasterComponent'
+import App from './components/App'
+import HumanView from './components/HumanView'
 import 'bootstrap/dist/css/bootstrap.css';
+import { Route, BrowserRouter, Switch } from 'react-router-dom'
 
 class RootComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            humans: [],
-        }
-    }
-
     render() {
         return (
-            <div className="root-component">
-                <div className="title">List of humans</div>
-                <HumansTable humans={this.state.humans}/>
-            </div>
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/" component={App}/>
+                    <Route path="/humans/:id" component={HumanView}/>
+                </Switch>
+            </BrowserRouter>
         );
     }
 }

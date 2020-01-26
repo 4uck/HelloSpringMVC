@@ -19,7 +19,7 @@ public class MyWebAppInitializer implements WebApplicationInitializer {
                 .addServlet("dispatcher", new DispatcherServlet(context));
 
         dispatcher.setLoadOnStartup(1);
-        dispatcher.addMapping("/");
+        dispatcher.addMapping("/*");
 
         // UTF8 Charactor Filter.
         FilterRegistration.Dynamic fr = container.addFilter("encodingFilter", CharacterEncodingFilter.class);

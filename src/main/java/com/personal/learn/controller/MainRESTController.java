@@ -21,7 +21,7 @@ public class MainRESTController {
         return human.getId().toString();
     }
 
-    @RequestMapping(value = "all", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Human> all() {
         return humanService.findAll();
     }

@@ -1,8 +1,8 @@
-export const getHumans = (successCallback, errorCallback) => {
-    fetch("/rest/humans/all")
+export const getRequest = (successCallback, errorCallback, url) => {
+    fetch(url)
         .then(res => res.json())
-        .then((humans) => {
-                successCallback(humans);
+        .then((response) => {
+                successCallback(response);
             },
             // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
             // чтобы не перехватывать исключения из ошибок в самих компонентах.
