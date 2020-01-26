@@ -6,9 +6,8 @@
 .classpath
 target/
 *.iml
-src/main/webapp/css/bundle.css
-src/main/webapp/js/
-src/main/webapp/images/
-src/main/webapp/fonts/
-src/main/webapp/index.html
+src/main/webapp/
+!src/main/webapp/WEB-INF/
+client/build
+client/node_modules
 rebel.xml
