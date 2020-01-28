@@ -17,7 +17,7 @@ export function TableBody(props) {
     return (
         <tbody> {
             props.humans.map((human, index) =>
-                <tr onClick={() => console.log("open edit page")}>
+                <tr onClick={() => props.handleClick(human.id)}>
                     <th scope="row">{index}</th>
                     <td>{human.name}</td>
                     <td>{human.sex}</td>

@@ -1,6 +1,7 @@
 import React from 'react'
-import {getHumans} from '../../services/HumansService'
+import {getRequest} from '../../services/RestService'
 import {TableHead, TableBody} from './SlaveComponents'
+import { Link } from 'react-router-dom'
 
 class MasterComponent extends React.Component {
     constructor(props) {
@@ -9,8 +10,13 @@ class MasterComponent extends React.Component {
         this.state = {
             humans: [],
         };
+
+        this.handleClick = this.handleClick.bind(this);
     }
 
+    handleClick(id) {
+        console.log('open new page', id);
+    }
 
     componentDidMount() {
         const successCallback = function(humans) {
@@ -27,15 +33,18 @@ class MasterComponent extends React.Component {
             });
         }.bind(this);
 
-        getHumans(successCallback,errorCallback);
+        getRequest(successCallback,errorCallback, "/rest/humans");
     }
 
     render() {
         return (
-            <table className="table table-hover">
-                <TableHead/>
-                <TableBody humans={this.state.humans}/>
-            </table>
+            <div className="table-component">
+                <div className="new-human-btn-wrapper"><Link to='/human/new' className="btn btn-primary">Добавить</Link></div>
+                <table className="table table-hover">
+                    <TableHead/>
+                    <TableBody humans={this.state.humans} handleClick={this.handleClick}/>
+                </table>
+            </div>
         )
     }
 }
