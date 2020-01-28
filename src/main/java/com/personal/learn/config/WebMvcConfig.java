@@ -1,17 +1,14 @@
 package com.personal.learn.config;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.personal.learn.*")
-public class WebMvcConfig extends WebMvcConfigurerAdapter {
+public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
     }
 
     @Override
@@ -19,8 +16,5 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-//    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        registry.addViewController("/**").setViewName("forward:/index.html");
-//    }
+
 }

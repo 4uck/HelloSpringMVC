@@ -1,6 +1,5 @@
 import React from 'react';
 import {getRequest} from '../services/RestService';
-import MasterComponent from "./humansTable/MasterComponent";
 
 
 class HumanView extends React.Component {
