@@ -1,5 +1,5 @@
 import React from 'react';
-import {getRequest} from '../services/RestService';
+import {getRequest, postRequest} from '../services/RestService';
 
 
 class HumanView extends React.Component {
@@ -9,14 +9,38 @@ class HumanView extends React.Component {
         this.id = props.match.params.id;
         this.state = {
             title: "Create entity",
-            name: ""
+            value: "",
+            human: {
+                sex: "MALE",
+            }
         };
 
-        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSaveBtnClick = this.handleSaveBtnClick.bind(this);
     }
 
-    handleNameChange(event) {
-        this.setState({name: event.target.value});
+    handleChange(event, field) {
+        let value = event.target.value;
+        this.setState(prevState => {
+            let human = Object.assign({}, prevState.human);
+            human[field] = value;
+            return { human };
+        })
+    }
+
+    handleSaveBtnClick() {
+        console.log("human", this.state.human);
+        const successCallback = function(human) {
+            // TODO
+            console.log("SUCCESS SAVE");
+        }.bind(this);
+
+        const errorCallback = function(resp) {
+            // TODO
+            console.log("ERROR SAVE");
+        }.bind(this);
+
+        postRequest(successCallback,errorCallback, "/rest/humans/save", this.state.human);
     }
 
     componentDidMount() {
@@ -47,8 +71,18 @@ class HumanView extends React.Component {
             <div className="human-view">
                 <div className="title">{this.state.title}</div>
                 <div className="human-view-body">
-                    <input type="text" value={this.state.name} onChange={this.handleNameChange}/>
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control" placeholder="Введите имя" value={this.state.human.name} onChange={event => this.handleChange(event, 'name')}/>
+                    </div>
+                    <div className="input-group mb-3">
+                        <input type="text" className="form-control" placeholder="Введите город региастрции" value={this.state.human.registrationCity} onChange={event => this.handleChange(event, 'registrationCity')}/>
+                    </div>
+                    <select className="custom-select" value={this.state.human.sex} onChange={event => this.handleChange(event, 'sex')}>
+                        <option value="MALE">Мужской</option>
+                        <option value="FEMALE">Женский</option>
+                    </select>
                 </div>
+                <button type="button" className="btn btn-primary" onClick={this.handleSaveBtnClick}>Сохранить</button>
             </div>
         )
     }

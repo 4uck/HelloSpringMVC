@@ -20,7 +20,7 @@ export function TableBody(props) {
                 <tr onClick={() => props.handleClick(human.id)}>
                     <th scope="row">{index}</th>
                     <td>{human.name}</td>
-                    <td>{human.sex}</td>
+                    <td>{props.getSexTranslation(human.sex)}</td>
                     <td>{human.registrationCity}</td>
                 </tr>
             )
