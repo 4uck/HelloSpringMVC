@@ -17,7 +17,7 @@ public class MainRESTController {
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public String save(@RequestBody Human human) {
-        humanService.savaHuman(human);
+        humanService.saveObject(human);
         return human.getId().toString();
     }
 
@@ -28,6 +28,6 @@ public class MainRESTController {
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
     public Human find(@PathVariable("id") String id) {
-        return humanService.findById(id);
+        return humanService.findOne(id);
     }
 }

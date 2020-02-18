@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "humans")
-public class Human {
+public class Human implements Persistable {
     @Id
     @GeneratedValue
     private UUID id;
