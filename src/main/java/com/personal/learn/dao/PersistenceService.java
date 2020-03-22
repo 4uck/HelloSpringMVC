@@ -2,8 +2,6 @@ package com.personal.learn.dao;
 
 import com.google.common.reflect.TypeToken;
 import com.personal.learn.models.Persistable;
-import com.personal.learn.utils.HibernateSessionFactoryUtil;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.transaction.Transactional;
