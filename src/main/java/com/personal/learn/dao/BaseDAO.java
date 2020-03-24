@@ -1,9 +1,7 @@
 package com.personal.learn.dao;
 
 import com.personal.learn.models.Persistable;
-import org.hibernate.Session;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
@@ -17,19 +15,8 @@ public class BaseDAO <T extends Persistable> {
 
     public T get(Class<?> clazz, UUID id) {
         @SuppressWarnings("unchecked")
-        T object = (T) getSession().get(clazz, id);
+        T object = (T) entityManager.find(clazz, id);
         return object;
-    }
-
-    public T get(String entityName, UUID id) {
-        @SuppressWarnings("unchecked")
-        T object = (T) getSession().get(entityName, id);
-        return object;
-    }
-
-    @Transactional
-    public Session getSession() {
-        return entityManager.unwrap(Session.class);
     }
 
     public List<T> findAll(Class clazz) {

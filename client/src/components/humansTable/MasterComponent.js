@@ -1,7 +1,7 @@
 import React from 'react'
 import {getRequest} from '../../services/RestService'
 import {TableHead, TableBody} from './SlaveComponents'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 class MasterComponent extends React.Component {
     constructor(props) {
@@ -17,6 +17,7 @@ class MasterComponent extends React.Component {
 
     handleClick(id) {
         console.log('open new page', id);
+        this.props.history.push('/human/' + id);
     }
 
     getSexTranslation(sex) {
@@ -57,4 +58,4 @@ class MasterComponent extends React.Component {
     }
 }
 
-export default MasterComponent;
+export default withRouter(MasterComponent);

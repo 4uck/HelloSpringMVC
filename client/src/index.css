@@ -8,3 +8,11 @@ body {
     margin: 10px auto;
 }
 
+.human-view .btn {
+    float: right;
+    margin-top: 10px;
+}
+
+.table-component .new-human-btn-wrapper .btn {
+    margin-bottom: 10px;
+}

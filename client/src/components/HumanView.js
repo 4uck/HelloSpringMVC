@@ -1,5 +1,7 @@
 import React from 'react';
 import {getRequest, postRequest} from '../services/RestService';
+import { withRouter } from 'react-router-dom'
+
 
 
 class HumanView extends React.Component {
@@ -33,6 +35,7 @@ class HumanView extends React.Component {
         const successCallback = function(human) {
             // TODO
             console.log("SUCCESS SAVE");
+            this.props.history.push('/');
         }.bind(this);
 
         const errorCallback = function(resp) {
@@ -88,4 +91,4 @@ class HumanView extends React.Component {
     }
 }
 
-export default HumanView;
+export default withRouter(HumanView);

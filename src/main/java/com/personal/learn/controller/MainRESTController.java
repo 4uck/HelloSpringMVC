@@ -5,7 +5,9 @@ import com.personal.learn.services.HumanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/rest/humans")
@@ -16,9 +18,15 @@ public class MainRESTController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(@RequestBody Human human) {
+    public Map<String, String> save(@RequestBody Human human) {
         humanService.saveObject(human);
-        return human.getId().toString();
+        Map<String, String> resp = new HashMap<String, String>() {
+            {
+                put("id", human.getId().toString());
+            }
+        };
+
+        return resp;
     }
 
     @RequestMapping(method = RequestMethod.GET)

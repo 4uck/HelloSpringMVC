@@ -23,7 +23,7 @@ export const postRequest = (successCallback, errorCallback, url, body) => {
             // чтобы не перехватывать исключения из ошибок в самих компонентах.
             (error) => {
                 errorCallback(error);
-                console.log("ERROR");
+                console.log("ERROR", error);
             }
         )
 };
