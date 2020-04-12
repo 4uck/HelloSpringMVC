@@ -28,17 +28,17 @@ class MasterComponent extends React.Component {
     }
 
     componentDidMount() {
-        const successCallback = function(humans) {
+        const successCallback = async function(response) {
             this.setState({
                 isLoaded: true,
-                humans: humans
+                humans: await response.json()
             });
         }.bind(this);
 
         const errorCallback = function(resp) {
             this.setState({
                 isLoaded: true,
-                error: resp
+                error: resp.status
             });
         }.bind(this);
 

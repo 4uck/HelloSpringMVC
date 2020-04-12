@@ -11,6 +11,7 @@ body {
 .human-view .btn {
     float: right;
     margin-top: 10px;
+    margin-right: 10px;
 }
 
 .table-component .new-human-btn-wrapper .btn {

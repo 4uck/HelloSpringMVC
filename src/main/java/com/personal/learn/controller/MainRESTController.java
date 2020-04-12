@@ -29,6 +29,11 @@ public class MainRESTController {
         return resp;
     }
 
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
+    public void remove(@PathVariable("id") String id) {
+        humanService.deleteObject(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public List<Human> all() {
         return humanService.findAll();

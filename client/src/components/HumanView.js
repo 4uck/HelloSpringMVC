@@ -19,6 +19,7 @@ class HumanView extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSaveBtnClick = this.handleSaveBtnClick.bind(this);
+        this.handleRemoveBtnClick = this.handleRemoveBtnClick.bind(this);
     }
 
     handleChange(event, field) {
@@ -32,18 +33,35 @@ class HumanView extends React.Component {
 
     handleSaveBtnClick() {
         console.log("human", this.state.human);
-        const successCallback = function(human) {
+        const successCallback = function(response) {
             // TODO
             console.log("SUCCESS SAVE");
             this.props.history.push('/');
         }.bind(this);
 
-        const errorCallback = function(resp) {
+        const errorCallback = function(response) {
             // TODO
             console.log("ERROR SAVE");
         }.bind(this);
 
-        postRequest(successCallback,errorCallback, "/rest/humans/save", this.state.human);
+        postRequest(successCallback, errorCallback, "/rest/humans/save", this.state.human);
+    }
+
+    handleRemoveBtnClick() {
+        console.log("human", this.state.human);
+        const successCallback = function(response) {
+            // TODO
+            console.log("SUCCESS REMOVE");
+            this.props.history.push('/');
+        }.bind(this);
+
+        const errorCallback = function(response) {
+            // TODO
+            console.log("response: ", response);
+            console.log("ERROR REMOVE");
+        }.bind(this);
+
+        getRequest(successCallback, errorCallback, "/rest/humans/remove/" + this.state.human.id);
     }
 
     componentDidMount() {
@@ -52,17 +70,17 @@ class HumanView extends React.Component {
         }
 
         this.setState({title: "Edit entity"});
-        const successCallback = function(human) {
+        const successCallback = async function(response) {
             this.setState({
                 isLoaded: true,
-                human: human
+                human: await response.json()
             });
         }.bind(this);
 
-        const errorCallback = function(resp) {
+        const errorCallback = function(response) {
             this.setState({
                 isLoaded: true,
-                error: resp
+                error: response
             });
         }.bind(this);
 
@@ -85,6 +103,7 @@ class HumanView extends React.Component {
                         <option value="FEMALE">Женский</option>
                     </select>
                 </div>
+                <button type="button" className="btn btn-danger" onClick={this.handleRemoveBtnClick}>Удалить</button>
                 <button type="button" className="btn btn-primary" onClick={this.handleSaveBtnClick}>Сохранить</button>
             </div>
         )
