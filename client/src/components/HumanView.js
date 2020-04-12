@@ -103,7 +103,7 @@ class HumanView extends React.Component {
                         <option value="FEMALE">Женский</option>
                     </select>
                 </div>
-                <button type="button" className="btn btn-danger" onClick={this.handleRemoveBtnClick}>Удалить</button>
+                {this.id !== 'new' && <button type="button" className="btn btn-danger" onClick={this.handleRemoveBtnClick}>Удалить</button>}
                 <button type="button" className="btn btn-primary" onClick={this.handleSaveBtnClick}>Сохранить</button>
             </div>
         )
