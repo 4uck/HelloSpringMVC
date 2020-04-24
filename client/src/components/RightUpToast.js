@@ -16,8 +16,9 @@ class RightUpToast extends React.Component {
         setCallback(this.showToast);
     }
 
-    showToast() {
+    showToast(message) {
         this.setState({
+            message: message,
             showToast: true
         })
     }
@@ -43,7 +44,7 @@ class RightUpToast extends React.Component {
                     <strong className="mr-auto">Bootstrap</strong>
                     <small>11 mins ago</small>
                 </Toast.Header>
-                <Toast.Body>Доступно только авторизованному пользователю</Toast.Body>
+                <Toast.Body>{this.state.message}</Toast.Body>
             </Toast>
         </div>
         )

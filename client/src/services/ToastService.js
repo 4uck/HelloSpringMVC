@@ -1,7 +1,7 @@
 var updateShowToastCallback = undefined;
 
-export const showToast = () => {
-    updateShowToastCallback();
+export const showToast = (message) => {
+    updateShowToastCallback(message);
 };
 
 export const setCallback = (callback) => {

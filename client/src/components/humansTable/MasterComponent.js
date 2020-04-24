@@ -21,7 +21,7 @@ class MasterComponent extends React.Component {
         if (isAdmin()) {
             this.props.history.push('/human/' + id);
         } else {
-            showToast();
+            showToast("Редактирование доступно только администратору");
         }
     }
 
