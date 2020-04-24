@@ -1,7 +1,9 @@
 import React from 'react'
-import {getRequest} from '../../services/RestService'
+import {getRequest, postRequest} from '../../services/RestService'
 import {TableHead, TableBody} from './SlaveComponents'
 import { Link, withRouter } from 'react-router-dom'
+import {showToast} from "../../services/ToastService";
+import {isAdmin} from "../../services/UserService"
 
 class MasterComponent extends React.Component {
     constructor(props) {
@@ -16,8 +18,11 @@ class MasterComponent extends React.Component {
     }
 
     handleClick(id) {
-        console.log('open new page', id);
-        this.props.history.push('/human/' + id);
+        if (isAdmin()) {
+            this.props.history.push('/human/' + id);
+        } else {
+            showToast();
+        }
     }
 
     getSexTranslation(sex) {
@@ -48,7 +53,7 @@ class MasterComponent extends React.Component {
     render() {
         return (
             <div className="table-component">
-                <div className="new-human-btn-wrapper"><Link to='/human/new' className="btn btn-primary">Добавить</Link></div>
+                {isAdmin() && <div className="new-human-btn-wrapper"><Link to='/human/new' className="btn btn-primary">Добавить</Link></div>}
                 <table className="table table-hover">
                     <TableHead/>
                     <TableBody humans={this.state.humans} handleClick={this.handleClick} getSexTranslation={this.getSexTranslation}/>
