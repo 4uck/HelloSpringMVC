@@ -41,8 +41,7 @@ class RightUpToast extends React.Component {
             <Toast show={this.state.showToast} onClose={this.hideToast} delay={3000} autohide>
                 <Toast.Header>
                     <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
-                    <strong className="mr-auto">Bootstrap</strong>
-                    <small>11 mins ago</small>
+                    <strong className="mr-auto">Внимание</strong>
                 </Toast.Header>
                 <Toast.Body>{this.state.message}</Toast.Body>
             </Toast>
