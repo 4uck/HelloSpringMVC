@@ -3,6 +3,7 @@ package com.personal.learn.controller;
 import com.personal.learn.models.Human;
 import com.personal.learn.services.HumanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.RememberMeAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +48,18 @@ public class MainRESTController {
     @RequestMapping(method = RequestMethod.GET)
     public List<Human> all() {
         return humanService.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public List<Human> pagination(@RequestBody Map<String, Integer> params) {
+        Integer startFrom = params.get("startFrom");
+        Integer pageSize = params.get("pageSize");
+
+        if (startFrom == null || pageSize == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "startFrom and pageSize must be not null");
+        }
+
+        return humanService.pagination(startFrom, pageSize);
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
