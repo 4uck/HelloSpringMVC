@@ -15,7 +15,8 @@ export function TableHead() {
 
 export function TableBody(props) {
     return (
-        <tbody> {
+        <tbody>
+        {
             props.humans.map((human, index) =>
                 <tr onClick={() => props.handleClick(human.id)}>
                     <th scope="row">{index}</th>

@@ -10,4 +10,6 @@ src/main/webapp/
 !src/main/webapp/WEB-INF/
 client/build
 client/node_modules
+client/package-lock.json
 rebel.xml
+docker/*.war

@@ -58,6 +58,22 @@ class MasterComponent extends React.Component {
                     <TableHead/>
                     <TableBody humans={this.state.humans} handleClick={this.handleClick} getSexTranslation={this.getSexTranslation}/>
                 </table>
+                { this.state.humans && this.state.humans.length === 0 &&
+
+                    <div className="dummy-message-block">
+
+                        <div className="dummy-message">
+                            Нет добавленных людей.
+                        </div>
+
+                        { !isAdmin() &&
+                            <div className="dummy-message">
+                                Добавить человека может только авторизованный пользователь.
+                                <a href="/rest/auth/secretAuth">Авторизоваться</a>
+                            </div>
+                        }
+                    </div>
+                }
             </div>
         )
     }
