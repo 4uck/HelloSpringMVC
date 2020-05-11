@@ -16,4 +16,4 @@ For build client:
 1. `mvn clean package` from root project folder
 2. move to "docker" folder
 3. `docker-compose up -d`
-4. browse http://<docker-ip>:8080
+4. browse http://{docker-ip}:8080
