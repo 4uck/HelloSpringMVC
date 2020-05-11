@@ -69,7 +69,7 @@ class MasterComponent extends React.Component {
                         { !isAdmin() &&
                             <div className="dummy-message">
                                 Добавить человека может только авторизованный пользователь.
-                                <a href="/rest/auth/secretAuth">Авторизоваться</a>
+                                <a href="/auth">Авторизоваться</a>
                             </div>
                         }
                     </div>
